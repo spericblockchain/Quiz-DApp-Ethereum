@@ -432,6 +432,9 @@
     .sidebar-menu {
         width: 365px;
     }
+    .header-title.alloc{
+        position: unset;
+    }
     .nav-btn {
         position: fixed;
         z-index: 99;
@@ -558,6 +561,12 @@
     }
     .nav-btn span {
         background: #fffbfb;
+    }
+    .header-title.alloc{
+        position: unset;
+    }
+    .header-area {
+         padding: 15px 20px;
     }
     .sbar_collapsed .sidebar-menu {
         left: -100%;
