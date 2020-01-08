@@ -1,6 +1,5 @@
-
 // Server Side Signing
-const Tx = require('ethereumjs-tx').Transaction
+const Tx = require("ethereumjs-tx").Transaction;
 
 module.exports.sendTransaction = function (
   methodCall,
@@ -9,12 +8,9 @@ module.exports.sendTransaction = function (
   cb
 ) {
   const encodedABI = methodCall.encodeABI();
-  console.log("TCL: privatekey", privatekey)
-  const privatekeyHex = Buffer.from(privatekey, 'hex');
-  console.log("TCL: privatekeyHex", privatekeyHex)
+  const privatekeyHex = Buffer.from(privatekey, "hex");
   web3.eth.getGasPrice().then(gPrize => {
     web3.eth.getTransactionCount(addressfrom).then(txCount => {
-    console.log("TCL: txCount", txCount)
       web3.eth.getBlock('latest').then(block => {
         var TxData = {
           nonce: web3.utils.toHex(txCount),
@@ -26,22 +22,18 @@ module.exports.sendTransaction = function (
         };
         const transaction = new Tx(TxData);
         transaction.sign(privatekeyHex);
-        const serializedtx = transaction.serialize().toString('hex');
+        const serializedtx = transaction.serialize().toString("hex");
         web3.eth
-          .sendSignedTransaction('0x' + serializedtx)
-          .on('transactionHash', hash => {
-            console.log('TransactionHash: ' + hash);
+          .sendSignedTransaction("0x" + serializedtx)
+          .on("transactionHash", hash => {
           })
-          .on('receipt', receipt => {
-            console.log('Receipt: ', receipt);
+          .on("receipt", receipt => {
             cb(true);
           })
-          .on('error', error => {
-            console.log('Error: ', error);
+          .on("error", error => {
             cb(false);
           })
           .catch(error => {
-            console.log('web3 exception Handled: \n', error);
           });
       });
     });
