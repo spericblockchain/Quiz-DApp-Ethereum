@@ -25,12 +25,12 @@ module.exports.sendTransaction = function (
         const serializedtx = transaction.serialize().toString("hex");
         web3.eth
           .sendSignedTransaction("0x" + serializedtx)
-          .on("transactionHash", hash => {
+          .on("transactionHash", (hash) => {
           })
-          .on("receipt", receipt => {
+          .on("receipt", (receipt) => {
             cb(true);
           })
-          .on("error", error => {
+          .on("error", (error) => {
             cb(false);
           })
           .catch(error => {
