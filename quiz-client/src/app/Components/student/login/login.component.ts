@@ -1,18 +1,18 @@
-import { Component, OnInit, DoCheck, Input } from "@angular/core";
-import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
-import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
-import { FormControl } from "@angular/forms";
-import { Router } from "@angular/router";
-import { Web3Service } from "src/app/Services/Web3/web3.service";
-import { NgForm } from "@angular/forms";
-import { Web3Model } from "src/app/Models/web3.model";
-import { ApiService } from "src/app/Services/api/api.service";
+import { Component, OnInit, DoCheck, Input } from '@angular/core'
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout'
+import { Observable } from 'rxjs'
+import { map } from 'rxjs/operators'
+import { FormControl } from '@angular/forms'
+import { Router } from '@angular/router'
+import { Web3Service } from 'src/app/Services/Web3/web3.service'
+import { NgForm } from '@angular/forms'
+import { Web3Model } from 'src/app/Models/web3.model'
+import { ApiService } from 'src/app/Services/api/api.service'
 
 @Component({
-  selector: "app-login",
-  templateUrl: "./login.component.html",
-  styleUrls: ["./login.component.scss"]
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
   account: any;
@@ -36,14 +36,14 @@ export class LoginComponent implements OnInit {
       this.account = data.account;
       this.quiz = data.quiz;
     });
-    this.studId = sessionStorage.getItem("studId");
-    this.studBatch = sessionStorage.getItem("Batch");
+    this.studId = sessionStorage.getItem('studId');
+    this.studBatch = sessionStorage.getItem('Batch');
   }
 
   onSubmit = async (form: NgForm) => {
     try {
       const quizId = form.value.quizId;
-      sessionStorage.setItem("quizId", quizId);
+      sessionStorage.setItem('quizId', quizId);
 
       const quizBatch = await this.quiz
         .QuizBatch(quizId)
@@ -53,17 +53,17 @@ export class LoginComponent implements OnInit {
 
         .call({ from: this.account });
       if (this.studBatch === quizBatch) {
-        if (submit !== "1") {
-          console.log("INSIDE THE SUBMIT SESSION");
-          alert("Click OK to Begin the Quiz");
+        if (submit !== '1') {
+          console.log('INSIDE THE SUBMIT SESSION');
+          alert('Click OK to Begin the Quiz');
           const dat = await this.api.setSubmit(this.studId, quizId);
-          this.route.navigateByUrl("/student/quiz");
+          this.route.navigateByUrl('/student/quiz');
         } else {
-          alert("You have Already attended this Quiz");
+          alert('You have Already attended this Quiz');
           this.logOut();
         }
       } else {
-        alert("This quizId is not assigned for this student");
+        alert('This quizId is not assigned for this student');
         this.logOut();
       }
     } catch (error) {
@@ -74,6 +74,6 @@ export class LoginComponent implements OnInit {
   logOut = async () => {
     sessionStorage.clear();
     this.web3service.web3logout();
-    this.route.navigateByUrl("/");
+    this.route.navigateByUrl('/');
   };
 }

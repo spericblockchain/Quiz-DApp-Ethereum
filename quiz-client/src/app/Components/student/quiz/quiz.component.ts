@@ -1,23 +1,23 @@
-import { Component, OnInit } from "@angular/core";
-import { Web3Model } from "src/app/Models/web3.model";
-import { Web3Service } from "src/app/Services/Web3/web3.service";
-import { Router } from "@angular/router";
+import { Component, OnInit } from '@angular/core'
+import { Web3Model } from 'src/app/Models/web3.model'
+import { Web3Service } from 'src/app/Services/Web3/web3.service'
+import { Router } from '@angular/router'
 import {
   NgForm,
   FormGroup,
   Validators,
   FormBuilder,
   FormArray
-} from "@angular/forms";
-import { ApiService } from "src/app/Services/api/api.service";
-import { Observable } from "rxjs";
-import { Breakpoints, BreakpointObserver } from "@angular/cdk/layout";
-import { map } from "rxjs/operators";
+} from '@angular/forms'
+import { ApiService } from 'src/app/Services/api/api.service'
+import { Observable } from 'rxjs'
+import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout'
+import { map } from 'rxjs/operators'
 
 @Component({
-  selector: "app-quiz",
-  templateUrl: "./quiz.component.html",
-  styleUrls: ["./quiz.component.scss"]
+  selector: 'app-quiz',
+  templateUrl: './quiz.component.html',
+  styleUrls: ['./quiz.component.scss']
 })
 export class QuizComponent implements OnInit {
   quiz: any;
@@ -26,12 +26,12 @@ export class QuizComponent implements OnInit {
   studId: any;
   quizId: any;
   ques = {
-    id: "",
-    quest: "",
-    op1: "",
-    op2: "",
-    op3: "",
-    op4: ""
+    id: '',
+    quest: '',
+    op1: '',
+    op2: '',
+    op3: '',
+    op4: ''
   };
   answer = [];
   fi: any;
@@ -56,10 +56,10 @@ export class QuizComponent implements OnInit {
       this.quiz = data.quiz;
     });
     this.form = this.fb.group({
-      answers: this.fb.control[""]
+      answers: this.fb.control['']
     });
-    this.studId = parseInt(sessionStorage.getItem("studId"));
-    this.quizId = parseInt(sessionStorage.getItem("quizId"));
+    this.studId = parseInt(sessionStorage.getItem('studId'));
+    this.quizId = parseInt(sessionStorage.getItem('quizId'));
     this.assign();
   }
   assign = async () => {
@@ -76,14 +76,14 @@ export class QuizComponent implements OnInit {
             op2: q[i].op2,
             op3: q[i].op3,
             op4: q[i].op4,
-            a: ""
+            a: ''
           });
         }
         this.q = quest;
         this.init();
       }
     } catch (error) {
-      console.log("TCL: QuizListComponent -> assign -> error", error);
+      console.log('TCL: QuizListComponent -> assign -> error', error);
     }
   };
   init = async () => {
@@ -100,7 +100,7 @@ export class QuizComponent implements OnInit {
     const submit = await this.quiz
       .getSubmit(this.studId, this.quizId)
       .call({ from: this.account });
-    console.log("TCL: LoginComponent -> onSubmit -> submit", submit);
+    console.log('TCL: LoginComponent -> onSubmit -> submit', submit);
     this.fi = localStorage.getItem(this.ques.id);
   };
   result = async () => {
@@ -127,10 +127,10 @@ export class QuizComponent implements OnInit {
       const submit = await this.quiz
         .getSubmit(this.studId, this.quizId)
         .call({ from: this.account });
-      console.log("TCL: LoginComponent -> onSubmit -> submit", submit);
-      if (confirm("Your Quiz is Submitted")) {
+      console.log('TCL: LoginComponent -> onSubmit -> submit', submit);
+      if (confirm('Your Quiz is Submitted')) {
         localStorage.clear();
-        this.route.navigateByUrl("/student");
+        this.route.navigateByUrl('/student');
       }
     } catch (error) {
       console.log(error);
@@ -140,13 +140,13 @@ export class QuizComponent implements OnInit {
   logOut = async () => {
     sessionStorage.clear();
     this.web3service.web3logout();
-    this.route.navigateByUrl("/");
+    this.route.navigateByUrl('/');
   };
   prev = async () => {
     this.count--;
     for (let i: any  = 1; i <= 4; i++) {
       let a = document.getElementById(i) as HTMLInputElement
-      console.log("TCL: QuizComponent -> prev -> a", a.checked)
+      console.log('TCL: QuizComponent -> prev -> a', a.checked)
       a.checked = false;
     }
     this.init();
@@ -155,7 +155,7 @@ export class QuizComponent implements OnInit {
     this.count++;
     for (let i:any  = 1; i <= 4; i++) {
       let b = document.getElementById(i) as HTMLInputElement
-      console.log("TCL: QuizComponent -> next -> b", b)
+      console.log('TCL: QuizComponent -> next -> b', b)
       b.checked = false;
     }
     this.init();
