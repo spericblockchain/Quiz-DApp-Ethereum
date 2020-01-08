@@ -1,0 +1,150 @@
+<app-navigation [ContentType]="6"></app-navigation>
+
+<body class="body-bg">
+
+  <!-- page title area end -->
+  <div class="main-content-inner">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 mt-5">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="header-title" style="position: absolute;">
+                All Quizes
+              </h4><br><br>
+              <div class="single-table">
+                <div class="table-responsive">
+                  <table class="table table-striped text-center">
+                    <thead class="text-uppercase">
+                      <tr>
+                        <th scope="col">Quiz ID</th>
+                        <th scope="col">Quiz Name</th>
+                        <th scope="col">Batch Assigned</th>
+                        <th scope="col">View Quiz</th>
+                        <th scope="col">View Report</th>
+                        <th scope="col">action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                      <tr *ngFor="let question of ques; index as i">
+                        <!-- <th scope="row">{{ i + 1 }}</th> -->
+                        <td>{{ question.id }}</td>
+                        <td>{{ question.quizName }}</td>
+                        <td>{{ question.batch }}</td>
+                        <td><a class="ti-folder open-AddQuizDialog" (click)="modal(i)" data-toggle="modal"
+                            data-myvalue="troudbal" data-target=".bd-example-modal-lg" data-id="i"></a></td>
+                        <td><a class="ti-list open-ReportDialog" (click)="report(i)" data-toggle="modal"
+                            data-myvalue="troudbal" data-target=".bd-example-modal-lg1" data-id="i"></a></td>
+                        <td><a class="ti-trash" (click)="remove(question.id)"></a></td>
+                      </tr>
+
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- footer area start-->
+  <footer>
+    <div class="footer-area">
+      <p>© Copyright 2019. All right reserved.</p>
+    </div>
+  </footer>
+  <!-- footer area end-->
+  <!--ModalPopup-->
+  <div *ngIf="showReportBox" class="modal fade bd-example-modal-lg1" id="report">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <!-- <div> -->
+          <div class="modal-header">
+            <h5 class="modal-title">Students</h5>
+          </div>
+          <div class="modal-body">
+            <table class="table table-striped text-center">
+              <thead class="text-uppercase">
+                <tr>
+                  <th scope="col">Student ID</th>
+                  <th scope="col">Student Name</th>
+                  <th scope="col">Score</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let stu of stud; index as i">
+                  <td>{{stu.id}}</td>
+                  <td>{{stu.name}}</td>
+                  <td>{{stu.score}} </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ------------------------------ -->
+    <div *ngIf="showModalBox" class="modal fade bd-example-modal-lg" id="addQuizDialog">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div *ngFor="let modalQ of modalQues; index as j">
+            <div class="modal-header">
+              <h5 class="modal-title">Question {{i}}{{j+1}}</h5>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <div class="question-answer">{{ modalQ.id }}). {{modalQ.quest}} </div>
+                <br>
+
+                <div class="row">
+                  <div class="col-md-3 custom-control custom-checkbox">
+                    <label><input type="checkbox" id="option1" name="first" disabled
+                        [checked]="modalQ.op1 == modalQ.ans">&nbsp;&nbsp; {{modalQ.op1}}</label>
+                  </div>
+                  <div class="col-md-3 custom-control custom-checkbox">
+                    <label><input type="checkbox" id="option2" name="first" disabled
+                        [checked]="modalQ.op2 == modalQ.ans">&nbsp;&nbsp; {{modalQ.op2}}</label>
+                  </div>
+                  <div class="col-md-3 custom-control custom-checkbox">
+                    <label><input type="checkbox" id="option3" name="first" disabled
+                        [checked]="modalQ.op3 == modalQ.ans">&nbsp;&nbsp; {{modalQ.op3}}</label>
+                  </div>
+                  <div class="col-md-3 custom-control custom-checkbox">
+                    <label><input type="checkbox" id="option4" name="first" disabled
+                        [checked]="modalQ.op4 == modalQ.ans">&nbsp;&nbsp; {{modalQ.op4}}</label>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>$(document).on("click", ".open-AddQuizDialog", function () {
+        var myQuizId = $(this).data('id');
+        $(".modal-body #quizId").val(myQuizId);
+      });</script>
+    <!-- offset area end -->
+    <!-- jquery latest version -->
+    <script src="assets/js/vendor/jquery-2.2.4.min.js"></script>
+    <!-- bootstrap 4 js -->
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/metisMenu.min.js"></script>
+    <!-- others plugins -->
+    <script src="assets/js/plugins.js"></script>
+    <script src="assets/js/scripts.js"></script>
+</body>

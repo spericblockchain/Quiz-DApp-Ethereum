@@ -1,0 +1,137 @@
+<app-navigation [ContentType]="3"></app-navigation>
+<!-- main header area start -->
+<!-- page title area end -->
+<div class="main-content-inner">
+    <div class="row">
+            <div class="container">
+                    <form
+                    class="formwidth"[formGroup]="form"
+                  >
+      <div class="col-lg-12 mt-5">
+        <div class="card">
+          
+            <div class="card-body">
+              <h4 class="header-title stu">Questions</h4>
+              
+              <br />
+              <div class="form-group">
+                <div class="question-answer">
+                  {{ ques.id }}). {{ ques.quest }}
+                </div>
+                <br />
+                <div class="row radio-button" >
+                        
+                  <div  class="col-md-3">
+                    <div class="custom-control custom-radio">
+                      <input
+                        type="radio"
+                        value="{{ ques.op1 }}"
+                        id="1"
+                        name="answers"
+                        formControlName="answers"
+                        [checked]="ques.op1 === fi"
+                        class="custom-control-input" 
+                        (change)="onSelect($event, ques.id, ques.op1)"
+                        checked
+                      />
+                      <label
+                        class="custom-control-label"
+                        for="1"
+                        >{{ ques.op1 }}</label
+                      >
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="custom-control custom-radio">
+                      <input
+                        type="radio"
+                        value="{{ ques.op2 }}"
+                        id="2"
+                        name="answers"
+                        formControlName="answers"
+                        [checked]="ques.op2 === fi"
+                        class="custom-control-input"
+                        (change)="onSelect($event, ques.id, ques.op2)"
+                        checked
+                      />
+                      <label
+                        class="custom-control-label"
+                        for="2"
+                        >{{ ques.op2 }}</label
+                      >
+                    </div>
+                  </div>
+                  <div  class="col-md-3">
+                    <div class="custom-control custom-radio">
+                      <input
+                        type="radio"
+                        value="{{ ques.op3 }}"
+                        id="3"
+                        name="answers"
+                        formControlName="answers"
+                        [checked]="ques.op3 === fi"
+                        class="custom-control-input"
+                        (change)="onSelect($event, ques.id, ques.op3)"
+                        checked
+                      />
+                      <label
+                        class="custom-control-label"
+                        for="3"
+                        >{{ ques.op3 }}</label
+                      >
+                    </div>
+                  </div>
+                  <div  class="col-md-3">
+                    <div class="custom-control custom-radio">
+                      <input
+                        type="radio"
+                        value="{{ ques.op4 }}"
+                        id="4"
+                        name="answers"
+                        formControlName="answers"
+                        [checked]="ques.op4 === fi"
+                        class="custom-control-input"
+                        (change)="onSelect($event, ques.id, ques.op4)"
+                        checked
+                      />
+                      <label
+                        class="custom-control-label"
+                        for="4"
+                        >{{ ques.op4 }}</label
+                      >
+                    </div>
+                  </div>
+                  <br /><br />
+                </div>
+              </div>
+              <br />
+              
+
+              <div class="nextpre">
+                <button [disabled]="ques.id == '1'" class="fa fa-chevron-left btn btn-primary" (click)="prev()" aria-hidden="true"></button>
+                <button [disabled]="ques.id == q.length" class="fa fa-chevron-right btn btn-primary" (click)="next()" aria-hidden="true"></button>
+              </div>
+              <button
+                class="btn btn-primary pull-right"
+                name = "submit"
+                value = "Submit"
+                [disabled]="ques.id !== q.length"
+                (click)=onSubmit()
+                style="margin-bottom: 20px;"
+              >Submit</button>
+            </div>
+          
+        </div>
+      </div>
+      </form>
+    </div>
+
+  </div>
+</div>
+<!-- footer area start-->
+<footer>
+  <div class="footer-area">
+    <p>© Copyright 2019. All right reserved.</p>
+  </div>
+</footer>
+<!-- footer area end-->

@@ -1,0 +1,20 @@
+{
+  "/admin": {
+    "target": "http://localhost:3000",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+  "/submit": {
+    "target": "http://localhost:3000",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+  "/getQuiz": {
+    "target": "http://localhost:3000",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  }
+}

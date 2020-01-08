@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Quiz Ethereum</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+  <link rel="stylesheet" href="assets/css/metisMenu.css">
+  <link rel="stylesheet" href="assets/css/themify-icons.css">
+
+  <!-- style css -->
+  <link rel="stylesheet" href="assets/css/typography.css">
+  <link rel="stylesheet" href="assets/css/default-css.css">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+<link rel="stylesheet" href="assets/css/add-on.css">
+  <!-- modernizr css -->
+  <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
+
+</head>
+<body  class="body-bg">
+  <app-root></app-root>
+
+    <!-- jquery latest version -->
+    <script src="assets/js/vendor/jquery-2.2.4.min.js"></script>
+    <!-- bootstrap 4 js -->
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/metisMenu.min.js"></script>
+    <!-- others plugins -->
+    <!-- <script src="assets/js/plugins.js"></script>
+    <script src="assets/js/scripts.js"></script>
+	 -->
+	
+	<script>
+		$(function(){
+			var ink, d, x, y;
+			$(".ripplelink").click(function(e){
+				if($(this).find(".ink").length === 0){
+					$(this).prepend("<span class='ink'></span>");
+				}
+					 
+				ink = $(this).find(".ink");
+				ink.removeClass("animate");
+				 
+				if(!ink.height() && !ink.width()){
+					d = Math.max($(this).outerWidth(), $(this).outerHeight());
+					ink.css({height: d, width: d});
+				}
+				 
+				x = e.pageX - $(this).offset().left - ink.width()/2;
+				y = e.pageY - $(this).offset().top - ink.height()/2;
+				 
+				ink.css({top: y+'px', left: x+'px'}).addClass("animate");
+			});
+		});
+	</script>
+	
+</body>
+
+</html>

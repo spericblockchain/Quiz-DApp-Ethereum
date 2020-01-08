@@ -1,0 +1,212 @@
+<app-navigation [ContentType]="5"></app-navigation>
+<body class="body-bg">
+  <!-- page title area end -->
+  <div class="main-content-inner">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 mt-5">
+          <div class="card">
+            <div class="card-body">
+              <form [formGroup]="questions">
+                <button
+                  type="button"
+                  data-toggle="modal"
+                  data-target=".bd-example-modal-lg"
+                  class="btn btn-primary pull-right"
+                  style="margin-bottom: 20px;"
+                  (click)="submit()"
+                >
+                  Submit
+                </button>
+
+                <div formArrayName="question" class="edu">
+                  <div
+                    *ngFor="let q of questionForm.controls; let i = index"
+                    [formGroupName]="i"
+                  >
+                    <h6 class="header-title">Question {{ i + 1 }}</h6>
+                    <div class="form-group">
+                      <!-- <label>Question</label> -->
+                      <input
+                        formControlName="quest"
+                        class="form-control"
+                        type="text"
+                        placeholder="Enter Your Question"
+                        id="question"
+                      />
+                    </div>
+                    <div class="row">
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label>Option 1</label>
+                          <input
+                            formControlName="op1"
+                            class="form-control"
+                            type="text"
+                            placeholder="Enter Your Answer"
+                            id="option1"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label>Option 2</label>
+                          <input
+                            formControlName="op2"
+                            class="form-control"
+                            type="text"
+                            placeholder="Enter Your Answer"
+                            id="option2"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label>Option 3</label>
+                          <input
+                            formControlName="op3"
+                            class="form-control"
+                            type="text"
+                            placeholder="Enter Your Answer"
+                            id="option3"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label>Option 4</label> 
+                          <input
+                            formControlName="op4"
+                            class="form-control"
+                            type="text"
+                            placeholder="Enter Your Answer"
+                            id="option4"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-3 added">
+                        <label>Correct Answer</label>
+                        <select
+                          formControlName="answer"
+                          class="custom-select"
+                          style="height: 45px;"
+                        >
+                          <option value = null selected>Correct Answer</option>
+                          <option
+                            value="{{ questions.value.question[i].op1 }}"
+                            >{{ questions.value.question[i].op1 }}</option
+                          >
+                          <option
+                            value="{{ questions.value.question[i].op2 }}"
+                            >{{ questions.value.question[i].op2 }}</option
+                          >
+                          <option
+                            value="{{ questions.value.question[i].op3 }}"
+                            >{{ questions.value.question[i].op3 }}</option
+                          >
+                          <option
+                            value="{{ questions.value.question[i].op4 }}"
+                            >{{ questions.value.question[i].op4 }}</option
+                          >
+                        </select>
+                      </div>
+
+                      <div class="col-md-2 added">
+                        <i
+                          *ngIf="i > 0"
+                          class="fa btn fa-remove"
+                          aria-hidden="true"
+                          (click)="deleteQuestion(i)"
+                        ></i>
+                      </div>
+                      <div class="col-md-2 added">
+                        <i
+                          *ngIf="questionForm.controls.length === i + 1"
+                          class="fa btn fa-plus"
+                          aria-hidden="true"
+                          (click)="addQuestion(i)"
+                        ></i>
+                      </div>
+                    </div>
+                    <br /><br />
+                  </div>
+                  <br />
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- footer area start-->
+    <footer>
+      <div class="footer-area">
+        <p>© Copyright 2019. All right reserved.</p>
+      </div>
+    </footer>
+    <!-- footer area end-->
+  </div>
+
+  <!--ModalPopup-->
+  <div class="modal fade bd-example-modal-lg">
+    <form class="formwidth" (ngSubmit)="save()">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Enter the Details</h5>
+            <button type="button" class="close" data-dismiss="modal">
+              <span>&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-3 center"></div>
+              <div class="col-md-6 center">
+                <div class="form-group">
+                  <label for="quizName" class="col-form-label center"
+                    >Quiz Name</label
+                  >
+                  <input
+                    class="form-control"
+                    type="text"
+                    placeholder="Enter the Quiz Name"
+                    id="quizName"
+                    [(ngModel)]="quizName"
+                    name="quizName"
+                  />
+                  <label for="batch" class="col-form-label center">Batch Number</label>
+                  <input
+                    class="form-control"
+                    type="text"
+                    list="batches"
+                    placeholder="Choose the batch"
+                    id="batch"
+                    [(ngModel)]="batch"
+                    name="batch"
+                  />
+                  <datalist id="batches">
+                    <option value="1"> </option>
+                    <option value="2"> </option>
+                    <option value="3"> </option>
+                  </datalist>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="submit" class="btn btn-primary">Save</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</body>
