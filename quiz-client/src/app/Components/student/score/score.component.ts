@@ -1,12 +1,12 @@
-import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
-import { Web3Service } from "src/app/Services/Web3/web3.service";
-import { Web3Model } from "src/app/Models/web3.model";
+import { Component, OnInit } from '@angular/core'
+import { Router } from '@angular/router'
+import { Web3Service } from 'src/app/Services/Web3/web3.service'
+import { Web3Model } from 'src/app/Models/web3.model'
 
 @Component({
-  selector: "app-score",
-  templateUrl: "./score.component.html",
-  styleUrls: ["./score.component.scss"]
+  selector: 'app-score',
+  templateUrl: './score.component.html',
+  styleUrls: ['./score.component.scss']
 })
 export class ScoreComponent implements OnInit {
   quiz: any;
@@ -22,7 +22,7 @@ export class ScoreComponent implements OnInit {
       this.quiz = data.quiz;
     });
     this.view();
-    this.studId = parseInt(sessionStorage.getItem("studId"));
+    this.studId = parseInt(sessionStorage.getItem('studId'));
   }
 
   view = async () => {
@@ -32,7 +32,7 @@ export class ScoreComponent implements OnInit {
       let submit = await this.quiz
         .getSubmit(this.studId, i)
         .call({ from: this.account });
-      if (submit === "1") {
+      if (submit === '1') {
         let quizName = await this.quiz.QuizName(i).call({ from: this.account });
         let score = await this.quiz
           .getScore(this.studId, i)

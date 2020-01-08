@@ -100,7 +100,6 @@ export class QuizComponent implements OnInit {
     const submit = await this.quiz
       .getSubmit(this.studId, this.quizId)
       .call({ from: this.account });
-    console.log('TCL: LoginComponent -> onSubmit -> submit', submit);
     this.fi = localStorage.getItem(this.ques.id);
   };
   result = async () => {
@@ -118,7 +117,6 @@ export class QuizComponent implements OnInit {
         let val = localStorage.getItem(JSON.stringify(i + 1));
         final[JSON.stringify(i + 1)] = val;
       }
-      // const data = await this.finalSubmit(final);
       const data: any = await this.api.postQuiz(
         final,
         this.studId,
@@ -127,13 +125,11 @@ export class QuizComponent implements OnInit {
       const submit = await this.quiz
         .getSubmit(this.studId, this.quizId)
         .call({ from: this.account });
-      console.log('TCL: LoginComponent -> onSubmit -> submit', submit);
       if (confirm('Your Quiz is Submitted')) {
         localStorage.clear();
         this.route.navigateByUrl('/student');
       }
     } catch (error) {
-      console.log(error);
     }
   };
 
@@ -146,7 +142,6 @@ export class QuizComponent implements OnInit {
     this.count--;
     for (let i: any  = 1; i <= 4; i++) {
       let a = document.getElementById(i) as HTMLInputElement
-      console.log('TCL: QuizComponent -> prev -> a', a.checked)
       a.checked = false;
     }
     this.init();
@@ -155,7 +150,6 @@ export class QuizComponent implements OnInit {
     this.count++;
     for (let i:any  = 1; i <= 4; i++) {
       let b = document.getElementById(i) as HTMLInputElement
-      console.log('TCL: QuizComponent -> next -> b', b)
       b.checked = false;
     }
     this.init();

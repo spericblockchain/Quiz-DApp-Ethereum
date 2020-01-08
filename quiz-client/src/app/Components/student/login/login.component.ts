@@ -54,7 +54,6 @@ export class LoginComponent implements OnInit {
         .call({ from: this.account });
       if (this.studBatch === quizBatch) {
         if (submit !== '1') {
-          console.log('INSIDE THE SUBMIT SESSION');
           alert('Click OK to Begin the Quiz');
           const dat = await this.api.setSubmit(this.studId, quizId);
           this.route.navigateByUrl('/student/quiz');
@@ -67,7 +66,6 @@ export class LoginComponent implements OnInit {
         this.logOut();
       }
     } catch (error) {
-      console.log(error);
     }
   };
 

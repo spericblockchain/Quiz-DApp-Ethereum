@@ -1,12 +1,12 @@
 /** @format */
 
-import { Component, OnInit, DoCheck, Input } from '@angular/core';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Component, OnInit, DoCheck, Input } from '@angular/core'
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout'
+import { Observable } from 'rxjs'
+import { map } from 'rxjs/operators'
 
-import { Router } from '@angular/router';
-import { Web3Service } from 'src/app/Services/Web3/web3.service';
+import { Router } from '@angular/router'
+import { Web3Service } from 'src/app/Services/Web3/web3.service'
 
 @Component({
   selector: 'app-navigation',
@@ -29,7 +29,7 @@ constructor(
 ) {}
 
 ngOnInit() {
-  this.name = sessionStorage.getItem("Name");
+  this.name = sessionStorage.getItem('Name');
 }
 
 logOut = async () => {

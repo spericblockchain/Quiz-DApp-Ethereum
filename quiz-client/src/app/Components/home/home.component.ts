@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Web3Service } from 'src/app/Services/Web3/web3.service';
-import { BreakpointObserver } from '@angular/cdk/layout';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core'
+import { Web3Service } from 'src/app/Services/Web3/web3.service'
+import { BreakpointObserver } from '@angular/cdk/layout'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-home',

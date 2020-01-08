@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { Web3Model } from 'src/app/Models/web3.model';
-import { Web3Service } from 'src/app/Services/Web3/web3.service';
+import { Injectable } from '@angular/core'
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router'
+import { Observable } from 'rxjs'
+import { Web3Model } from 'src/app/Models/web3.model'
+import { Web3Service } from 'src/app/Services/Web3/web3.service'
 
 @Injectable({
   providedIn: 'root'
@@ -27,15 +27,15 @@ export class StudentGuard implements CanActivate {
       .call({ from: this.web3var.account })
     if (checkStudent > 0) {
       const student = await this.web3var.quiz.Students(checkStudent).call({from: this.web3var.account})
-      sessionStorage.setItem("studId", checkStudent);
-      sessionStorage.setItem("Name", student.name);
-      sessionStorage.setItem("Batch", student.batch);
-      sessionStorage.setItem("PhNo", student.phno);
-      sessionStorage.setItem("Email", student.email);
-      sessionStorage.setItem("Address", student.addr);
+      sessionStorage.setItem('studId', checkStudent);
+      sessionStorage.setItem('Name', student.name);
+      sessionStorage.setItem('Batch', student.batch);
+      sessionStorage.setItem('PhNo', student.phno);
+      sessionStorage.setItem('Email', student.email);
+      sessionStorage.setItem('Address', student.addr);
       return true;
     } else {
-      alert("Sorry ! Only Student can Login");
+      alert('Sorry ! Only Student can Login');
       this.route.navigateByUrl('/');
     }
   }
@@ -56,24 +56,24 @@ export class StudentGuard implements CanActivate {
   //     let flag = false;
   //     for (let i = 1; i <= idStud; i++) {
   //       let student = await this.web3var.quiz.Students(i).call({ from: this.web3var.account });
-  //       console.log("TCL: LoginComponent -> assign -> student", student);
+  //       console.log('TCL: LoginComponent -> assign -> student', student);
   //       if (student.addr === this.web3var.account) {
-  //         sessionStorage.setItem("studId", JSON.stringify(i));
-  //         sessionStorage.setItem("Name", student.name);
-  //         sessionStorage.setItem("Batch", student.batch);
-  //         sessionStorage.setItem("PhNo", student.phno);
-  //         sessionStorage.setItem("Email", student.email);
-  //         sessionStorage.setItem("Address", student.addr);
+  //         sessionStorage.setItem('studId', JSON.stringify(i));
+  //         sessionStorage.setItem('Name', student.name);
+  //         sessionStorage.setItem('Batch', student.batch);
+  //         sessionStorage.setItem('PhNo', student.phno);
+  //         sessionStorage.setItem('Email', student.email);
+  //         sessionStorage.setItem('Address', student.addr);
   //         flag = true;
   //         return true;
   //       } 
   //     }
   //     if(flag === false) {
-  //       alert("Sorry ! Only Student can Login");
+  //       alert('Sorry ! Only Student can Login');
   //       this.route.navigateByUrl('/');
   //     }
   //   } else {
-  //     alert("Sorry ! Only Student can Login");
+  //     alert('Sorry ! Only Student can Login');
   //     this.route.navigateByUrl('/');
   //   }
   // }

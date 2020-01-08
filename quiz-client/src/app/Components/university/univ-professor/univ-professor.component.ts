@@ -106,7 +106,6 @@ export class UnivProfessorComponent implements OnInit {
       });
       this.assign();
     } catch (error) {
-      console.log(error);
     }
   };
   logOut = async () => {

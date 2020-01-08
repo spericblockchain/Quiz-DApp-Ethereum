@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { Web3Model } from 'src/app/Models/web3.model';
-import { Web3Service } from 'src/app/Services/Web3/web3.service';
+import { Injectable } from '@angular/core'
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router'
+import { Observable } from 'rxjs'
+import { Web3Model } from 'src/app/Models/web3.model'
+import { Web3Service } from 'src/app/Services/Web3/web3.service'
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +25,7 @@ export class UniversityGuard implements CanActivate {
       .university()
       .call({ from: this.web3var.account });
     if (univ === this.web3var.account) {
-      sessionStorage.setItem("Name", "University");
+      sessionStorage.setItem('Name', 'University');
       return true;
     } else {
       alert('Sorry ! Only University can Login');

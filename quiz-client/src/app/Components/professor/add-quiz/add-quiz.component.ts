@@ -33,7 +33,6 @@ export class AddQuizComponent implements OnInit {
   ngOnInit() {
     this.web3service.Web3Details$.subscribe(async (data: Web3Model) => {
       this.account = data.account;
-      console.log('TCL: AddQuizComponent -> ngOnInit -> this.account', this.account)
       this.quiz = data.quiz;
     });
 
@@ -91,15 +90,12 @@ export class AddQuizComponent implements OnInit {
     }
   };
   save = async () => {
-    console.log('TCL: AddQuizComponent -> save -> this.batch', this.batch)
     try {
       const b = parseInt(this.batch),   
         a = JSON.stringify(this.answer),
         qD = JSON.stringify(this.quizData),
         q=this.quizName,
         id = JSON.parse(sessionStorage.getItem('profId'));
-        console.log('TCL: AddQuizComponent -> save -> b', b)
-        console.log('TCL: AddQuizComponent -> save -> q', q)
       const createQuiz = await this.quiz.createQuiz(id, b, qD, a, q).send({
         from: this.account,
         gas: 5000000
@@ -109,8 +105,6 @@ export class AddQuizComponent implements OnInit {
       }
     }
     catch (error) {
-      console.log('TCL: AddQuizComponent -> save -> error', error)
-
     }
   }
 }
